@@ -1,31 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import client from "../api/client";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-export const Login =()=> {
+
+export const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { login, user } = useAuth();
 
-//Se conecta a nuestra API
-const onSubmit = async(e)=>{
-  e.preventDefault();
-  try {
-     const res = await client.post("user/login", {
+  useEffect(() => {
+    if (user) {
+      navigate("/admin"); // si ya está logueado
+    }
+  }, [user, navigate]);
+
+  
+  //Se conecta a nuestra API
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await client.post("user/login", {
         name,
         password,
       });
-      localStorage.setItem("_id", res.data._id);
+      login(res.data);
       alert("Ingreso exitoso");
-      // Redireccionamos a una ruta protegida o página de admin, por ejemplo
       navigate("/admin");
-  } catch (err) {
-    alert ('Error al ingresar: Verifica tu usuario o contraseña')
+    } catch (err) {
+      alert('Error al ingresar: Verifica tu usuario o contraseña')
+    }
   }
-}
 
   return (
-    <form onSubmit={onSubmit} className="px-4 sm:px-20 pt-6">
+    <form onSubmit={onSubmit} className="card px-4 sm:px-20 pt-6">
+
       <input
         type="text"
         placeholder="Usuario"
@@ -40,7 +50,7 @@ const onSubmit = async(e)=>{
         required
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Ingresar</button>
+      <button type="submit" className="btn btn-md btn-ghost">Ingresar</button>
     </form>
   );
 }

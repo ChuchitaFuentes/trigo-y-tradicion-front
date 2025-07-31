@@ -1,10 +1,10 @@
-import { EncabezadoTerciario } from "../components/EncabezadoTerciario"
+import {EncabezadoSecundario} from "../components/EncabezadoSecundario"
 import { TarjetaNosotros } from "../components/TarjetaNosotros"
 
 export const Nosotros = () => {
   return (
     <main className="px-4 sm:px-20 pt-6">
-      <EncabezadoTerciario titulo="Acerca de nosotros" />
+      <EncabezadoSecundario titulo="Acerca de nosotros" />
       <p className="text-justify">En Panadería Artesanal “Trigo y Tradición” nos apasiona el arte de hacer pan, un arte que requiere tiempo, paciencia y dedicación. Somos una panadería familiar fundada con el deseo de traer a nuestra comunidad el sabor auténtico del pan hecho a mano, con recetas tradicionales que pasan de generación en generación. Desde nuestros inicios, nos hemos comprometido a ofrecer productos de alta calidad, elaborados con ingredientes naturales y siguiendo métodos tradicionales que respetan los tiempos de fermentación y horneado.</p>
       <div className="flex gap-4 p-2 flex-wrap sm:flex-nowrap">
         <TarjetaNosotros subtitulo="Nuestro proceso" contenido="Cada día comenzamos de madrugada para asegurarnos de que el pan esté recién hecho y listo para nuestros clientes. Utilizamos solo ingredientes naturales, sin conservantes ni aditivos, y trabajamos con masa madre y harinas de origen local, garantizando frescura y un sabor único en cada pieza. Nuestros panaderos cuidan cada detalle, desde el amasado a mano hasta el horneado en horno de piedra, lo que aporta una textura y sabor inigualables a nuestros productos."/>
